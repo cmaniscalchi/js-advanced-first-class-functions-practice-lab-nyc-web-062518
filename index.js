@@ -1,49 +1,25 @@
-// Code your solution in this file!
-
 function logDriverNames(drivers) {
-  drivers.forEach(function (driver) {
-    console.log(driver.name);
-  })
+  return drivers.forEach(driver => console.log(driver.name))
 }
 
 function logDriversByHometown(drivers, hometown) {
-  const driversFromHometown = drivers.filter(function (driver) {
-    return hometown === driver.hometown;});
-  return logDriverNames(driversFromHometown);
+  return logDriverNames(drivers.filter(driver => driver.hometown === hometown))
 }
 
 function driversByRevenue(drivers) {
-  return drivers.slice().sort(function(driver1, driver2) {
-    return driver1.revenue - driver2.revenue
-  });
+  return drivers.slice().sort((a, b) => a.revenue - b.revenue)
 }
 
 function driversByName(drivers) {
-  return drivers.slice().sort(function(driver1, driver2) {
-    return (driver1.name).localeCompare(driver2.name);
-  })
+  return drivers.slice().sort((a, b) => (a.name).localeCompare(b.name))
 }
 
+const reducer = (accumulator, element) => (accumulator + element.revenue);
+
 function totalRevenue(drivers) {
-  const driverRevenues = function (accumulator, driver) {
-    return accumulator + driver.revenue;
-  }
-  return drivers.reduce(driverRevenues, 0);
+  return drivers.reduce((accumulator, driver) => (accumulator + driver.revenue), 0);
 }
 
 function averageRevenue(drivers) {
-  return (totalRevenue(drivers) / drivers.length)
+  return totalRevenue(drivers)/drivers.length
 }
-
-
-//
-// const array1 = [1, 2, 3, 4];
-// const reducer = (accumulator, currentValue) => accumulator + currentValue;
-//
-// // 1 + 2 + 3 + 4
-// console.log(array1.reduce(reducer));
-// // expected output: 10
-//
-// // 5 + 1 + 2 + 3 + 4
-// console.log(array1.reduce(reducer, 5));
-// // expected output: 15
