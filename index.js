@@ -14,8 +14,6 @@ function driversByName(drivers) {
   return drivers.slice().sort((a, b) => (a.name).localeCompare(b.name))
 }
 
-const reducer = (accumulator, element) => (accumulator + element.revenue);
-
 function totalRevenue(drivers) {
   return drivers.reduce((accumulator, driver) => (accumulator + driver.revenue), 0);
 }
